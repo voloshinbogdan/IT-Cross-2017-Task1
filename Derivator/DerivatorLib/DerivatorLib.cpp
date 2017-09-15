@@ -1,6 +1,6 @@
 #include "DerivatorLib.h"
 
-std::vector<double> derivate(std::vector<double> fy, double h) {
+std::vector<double> derivate(const std::vector<double> &fy, double h) {
     std::vector<double> result;
     int N = fy.size();
 

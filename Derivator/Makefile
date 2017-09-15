@@ -1,15 +1,14 @@
 # Makefile
 
-all: Derivator
+         SUBDIRS  =DerivatorApp DerivatorLib
+override OUTPATH  =$(PWD)/_out/
 
-Derivator: DerivatorLib.o DerivatorApp.o
-	g++ -c $@ $^
+.PHONY: subdirs $(SUBDIRS)
 
-DerivatorApp.o: DerivatorApp/DerivatorApp.cpp DerivatorLib/DerivatorLib.h
-	g++ -c -o $@ $^
-
-DerivatorLib.o: DerivatorLib/DerivatorLib.cpp DerivatorLib/DerivatorLib.h
-	g++ -c -o $@ $^
+$(SUBDIRS):
+	$(MAKE) -C $@ OUTPATH=$(OUTPATH)
 
 clean:
-	rm -f *.o
+	rm -rf _out
+
+DerivatorApp: DerivatorLib

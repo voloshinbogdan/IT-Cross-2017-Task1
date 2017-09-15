@@ -1,4 +1,7 @@
 #include <DerivatorLib.h>
+#include <fstream>
+#include <iostream>
+#include <cstdlib>
 
 
 
@@ -11,7 +14,7 @@ double interpolate(double x0, double y0, double x1, double y1, double x) {
 
 
 
-double calc_derivative_in_point(std::vector<double> fy, double x0, double h, double x) {
+double calc_derivative_in_point(const std::vector<double> &fy, double x0, double h, double x) {
     int N = fy.size();
     std::vector<double> fd = derivate(fy, h);
 
@@ -29,7 +32,7 @@ double calc_derivative_in_point(std::vector<double> fy, double x0, double h, dou
 
     double xp = x0 + (N - 2) * h;
     double xc = x0 + (N - 1) * h;
-    
+
     return interpolate(xp, fd[N - 2], xc, fd[N - 1], x);
 }
 
@@ -37,6 +40,15 @@ double calc_derivative_in_point(std::vector<double> fy, double x0, double h, dou
 
 int main(int argc, char* argv[])
 {
+    if (argc != 2) {
+	std::cout << "need exactly one argument: input file" << std::endl;
+	return EXIT_FAILURE;
+    }
+
+    std::ifstream input(argv[1]);
+
+    
 
 
+    return EXIT_SUCCESS;
 }

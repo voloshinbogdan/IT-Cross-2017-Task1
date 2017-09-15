@@ -4,7 +4,7 @@
 #include<vector>
 
 
-std::vector<double> derivate(std::vector<double> fx, double h);
+std::vector<double> derivate(const std::vector<double> &fx, double h);
 
 
 #endif
