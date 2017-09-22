@@ -41,14 +41,31 @@ double calc_derivative_in_point(const std::vector<double> &fy, double x0, double
 int main(int argc, char* argv[])
 {
     if (argc != 2) {
-	std::cout << "need exactly one argument: input file" << std::endl;
+	std::cout << "Need exactly one argument: input file" << std::endl;
 	return EXIT_FAILURE;
     }
 
     std::ifstream input(argv[1]);
 
-    
+    if (!input.is_open()) {
+	std::cout << "Can't open file " << argv[1] << std::endl;
+	return EXIT_FAILURE;
+    }
 
+    double x0;
+    double h;
+    double x;
+    input >> x0 >> h >> x;
+
+    std::vector<double> fy;
+    while(input.good()) {
+	double val;
+	input >> val;
+	fy.push_back(val);
+    }
+
+    double derivative_x = calc_derivative_in_point(fy, x0, h, x);
+    std::cout << "Derivative of f at point x=" << x << " is equal to " << derivative_x << std::endl;
 
     return EXIT_SUCCESS;
 }
