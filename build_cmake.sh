@@ -1,3 +1,3 @@
 mkdir -p build
 cd build
-cmake ../Derivator
+cmake -G "CodeBlocks - Unix Makefiles" ../Derivator/
